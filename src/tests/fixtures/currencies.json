@@ -1,0 +1,43 @@
+[
+    { "model": "api.currency",
+        "pk": 1,
+        "fields": {
+            "code": "JPY",
+            "name": "Иена",
+            "sign": "¥"
+        }
+    },
+    { "model": "api.currency",
+        "pk": 2,
+        "fields": {
+            "code": "EUR",
+            "name": "Euro",
+            "sign": "€"
+        }
+    },
+    {
+        "model": "api.currency",
+        "pk": 3,
+        "fields": {
+            "code": "AUD",
+            "name": "Австралийский доллар",
+            "sign": "$"
+          }
+    },
+    {   "model": "api.currency",
+        "pk": 4,
+        "fields": {
+            "code": "PYG",
+            "name": "Гуарани",
+            "sign": "₲"
+          }
+    },
+    {   "model": "api.currency",
+        "pk": 5,
+        "fields": {
+            "code": "USD",
+            "name": "Доллар",
+            "sign": "$"
+          }
+    }
+]
