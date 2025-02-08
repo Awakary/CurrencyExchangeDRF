@@ -8,5 +8,7 @@ REST API для описания валют и обменных курсов.
 Стек 
 
 Backend - Django Rest Framework
+
 Базы данных - Postgres
+
 Деплой - Docker compose, nginx
