@@ -16,7 +16,6 @@ class CurrencyViewSet(mixins.CreateModelMixin,
 
     def get_object(self, *args, **kwargs):
         serializer = CurrencyPathSerializer(data=self.kwargs)
-        print(5)
         if serializer.is_valid():
             code = serializer.validated_data['code']
             instance = self.queryset.filter(code=code).first()
