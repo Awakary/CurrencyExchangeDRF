@@ -1,9 +1,10 @@
 $(document).ready(function() {
+    const host = "http://localhost:8000/"
 
     // Fetch the list of currencies and populate the select element
     function requestCurrencies() {
         $.ajax({
-            url: `${process.env.BACK_HOST}/currencies`,
+            url: `${host}/currencies`,
             type: "GET",
             dataType: "json",
             success: function (data) {
@@ -65,7 +66,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         $.ajax({
-            url: `${process.env.BACK_HOST}/currencies`,
+            url: `${host}/currencies`,
             type: "POST",
             data: $("#add-currency").serialize(),
             success: function(data) {
@@ -85,7 +86,7 @@ $(document).ready(function() {
 
     function requestExchangeRates() {
         $.ajax({
-            url: `${process.env.BACK_HOST}/exchangeRates`,
+            url: `${host}/exchangeRates`,
             type: "GET",
             dataType: "json",
             success: function(response) {
@@ -138,7 +139,7 @@ $(document).ready(function() {
 
         // send values to the server with a patch request
         $.ajax({
-            url: `${process.env.BACK_HOST}/exchangeRate/${pair}`,
+            url: `${host}/exchangeRate/${pair}`,
             type: "PATCH",
             contentType : "application/x-www-form-urlencoded",
             data: `rate=${exchangeRate}`,
@@ -162,7 +163,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         $.ajax({
-            url: `${process.env.BACK_HOST}/exchangeRates`,
+            url: `${host}/exchangeRates`,
             type: "POST",
             data: $("#add-exchange-rate").serialize(),
             success: function(data) {
@@ -188,7 +189,7 @@ $(document).ready(function() {
         const amount = $("#convert-amount").val();
 
         $.ajax({
-            url: `${process.env.BACK_HOST}/exchange?from=${baseCurrency}&to=${targetCurrency}&amount=${amount}`,
+            url: `${host}/exchange?from=${baseCurrency}&to=${targetCurrency}&amount=${amount}`,
             type: "GET",
             // data: "$("#add-exchange-rate").serialize()",
             success: function(data) {
