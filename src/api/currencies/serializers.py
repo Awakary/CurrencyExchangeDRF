@@ -8,6 +8,10 @@ class CurrencyPathSerializer(CustomErrorSerializer):
 
 
 class CurrencySerializer(CustomErrorSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = Currency
-        fields = "__all__"
+
+        def validate_code(self, value):
+            return value.upper()
+
+        class Meta:
+            model = Currency
+            fields = "__all__"
