@@ -8,12 +8,11 @@ class CurrencyPathSerializer(CustomErrorSerializer):
 
 
 class CurrencySerializer(CustomErrorSerializer, serializers.ModelSerializer):
+    def validate_code(self, value):
+        if Currency.objects.filter(code=value.upper()).exists():
+            raise serializers.ValidationError("Валюта с таким кодом уже существует")
+        return value
 
-        def validate_code(self, value):
-            if Currency.objects.filter(code=value.upper()).exists():
-                raise serializers.ValidationError("Валюта с таким кодом уже существует")
-            return value.upper()
-
-        class Meta:
-            model = Currency
-            fields = "__all__"
+    class Meta:
+        model = Currency
+        fields = "__all__"

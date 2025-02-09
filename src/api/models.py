@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -15,6 +16,13 @@ class Currency(models.Model):
         verbose_name="Символ валюты",
         db_comment="Символ валюты")
 
+    def save(self, *args, **kwargs):
+        self.code = self.code.upper()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.code} ({self.name})"
+
     class Meta:
         verbose_name = "Валюта"
         db_table_comment = "Валюты"
@@ -26,9 +34,6 @@ class Currency(models.Model):
         indexes = [
             models.Index(fields=["code"], name="ix_currency$code")
         ]
-
-    def __str__(self):
-        return f"{self.code} ({self.name})"
 
 
 class ExchangeRate(models.Model):
@@ -52,7 +57,8 @@ class ExchangeRate(models.Model):
         decimal_places=6,
         max_digits=15,
         verbose_name="Курс обмена единицы базовой валюты к единице целевой валюты",
-        db_comment="Курс обмена единицы базовой валюты к единице целевой валюты")
+        db_comment="Курс обмена единицы базовой валюты к единице целевой валюты",
+        validators=[MinValueValidator(0)])
 
     class Meta:
         verbose_name = "Курс обмена"
